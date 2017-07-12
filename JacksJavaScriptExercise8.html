@@ -11,61 +11,70 @@
        </section>   
 
       <script>
-        var header = document.querySelector('header');
-        var section = document.querySelector('section');
+        var header = document.querySelector('header');   // these grab elements from header and section and 
+        var section = document.querySelector('section'); // and stores them in variables
 
         var requestURL ='https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json';
-        var request = new XMLHttpRequest();
-        request.open('GET', requestURL);
-        request.responseType = 'json';
-        request.send();
+        var request = new XMLHttpRequest(); //this creates a request object in order to make a request
+        request.open('GET', requestURL);    // this opens a new request with 2 parameters. 
+                                            //Get to get Data and the URL we prepared earlier
+       
+       
+        request.responseType = 'json' //setting the response type to json, 
+        request.send();               //in order to recieve a json type object
+                                      //the send, sends the request
 
-        request.onload = function() {
-        var superHeroes = request.response;
-        populateHeader(superHeroes);
-        showHeroes(superHeroes);
-        }
+       
+        request.onload = function() {        //This section of code describes how to deal with a response from
+        var superHeroes = request.response;  //the server. The json is stored in a variable called "superHeroes" 
+        populateHeader(superHeroes);         //The json is then passed to two function calls, first fills header
+        showHeroes(superHeroes);             //second creates information cards for each hero. 
+        }                                    //The whole process is wrapped in an handler function performed "onload"
 
-        function populateHeader(jsonObj) {
-        var myH1 = document.createElement('h1');
-        myH1.textContent = jsonObj['squadName'];
-        header.appendChild(myH1);
+        function populateHeader(jsonObj) {        //Following is the definition of the functions mentioned above.
+        var myH1 = document.createElement('h1');  //Parameters set to jason object so thats what it is called
+        myH1.textContent = jsonObj['squadName'];  //in function. Then creates a h1 element in the document,
+        header.appendChild(myH1);                 //textContent is then set to the squadName property of the json
+                                                  //All of this is the appended to the header
 
         var myPara = document.createElement('p');
         myPara.textContent = 'Hometown: ' + jsonObj['homeTown'] + ' // Formed: ' + jsonObj['formed'];
-        header.appendChild(myPara);
+        header.appendChild(myPara);               //This section works very similarly to myH1 ,
+                                                  //however the text has been concatenated into a string
         }
 
-        function showHeroes(jsonObj) {
-  var heroes = jsonObj['members'];
-      
-  for (var i = 0; i < heroes.length; i++) {
-    var myArticle = document.createElement('article');
-    var myH2 = document.createElement('h2');
-    var myPara1 = document.createElement('p');
-    var myPara2 = document.createElement('p');
-    var myPara3 = document.createElement('p');
-    var myList = document.createElement('ul');
-
-    myH2.textContent = heroes[i].name;
-    myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
-    myPara2.textContent = 'Age: ' + heroes[i].age;
-    myPara3.textContent = 'Superpowers:';
         
-    var superPowers = heroes[i].powers;
-    for (var j = 0; j < superPowers.length; j++) {
-      var listItem = document.createElement('li');
-      listItem.textContent = superPowers[j];
-      myList.appendChild(listItem);
-    }
+        function showHeroes(jsonObj) {                       //here the code is creating and displaying the super hero 
+        var heroes = jsonObj['members'];                     //cards. First all json memebers are stored in var heros
+      
+         for (var i = 0; i < heroes.length; i++) {           //loop that goes through each object in the array
+         var myArticle = document.createElement('article');  //New elements are then created 
+         var myH2 = document.createElement('h2');
+         var myPara1 = document.createElement('p');
+         var myPara2 = document.createElement('p');
+         var myPara3 = document.createElement('p');
+         var myList = document.createElement('ul');
 
-    myArticle.appendChild(myH2);
-    myArticle.appendChild(myPara1);
-    myArticle.appendChild(myPara2);
-    myArticle.appendChild(myPara3);
-    myArticle.appendChild(myList);
+   
+         myH2.textContent = heroes[i].name;          //here the contents of each element is defined.
+         myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity; 
+         myPara2.textContent = 'Age: ' + heroes[i].age;
+         myPara3.textContent = 'Superpowers:';
+        
+         var superPowers = heroes[i].powers;             //storing superpowers in another variable call superPowers,
+         for (var j = 0; j < superPowers.length; j++) {  //which contains the an array[]
+         var listItem = document.createElement('li');    //using a loop to loop through the powers creating an
+         listItem.textContent = superPowers[j];          // li element and putting a power inside it, then adding that
+         myList.appendChild(listItem);                   //to 'ul' (var myList) which is then appeneded to listItem
+         }
 
-    section.appendChild(myArticle);
+        myArticle.appendChild(myH2);          //Finaly all of the elements are appended to the article and the 
+        myArticle.appendChild(myPara1);       //article is appended to the section of the document
+        myArticle.appendChild(myPara2);       //Ordering these is important because that is how the will be displayed
+        myArticle.appendChild(myPara3);       //on the document
+        myArticle.appendChild(myList);
+
+        section.appendChild(myArticle);
   }
 }
 
