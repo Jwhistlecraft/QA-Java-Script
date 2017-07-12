@@ -1,0 +1,49 @@
+
+<html>   
+   <head>       
+     <title> Coding Challenege 7 </title>
+   </head>
+     <body>    
+		<form> 
+            
+        <input type="button" onclick="createPara()" value="CreateParagraph" /> 
+        <input type="button" onclick="changeTxt()" value="ChangePara" /> 
+        <input type="button" onclick="deleteTxt()" value="DeletePara" /> 
+		
+       
+        </form> 
+	 </body> 
+</html> 
+
+<script>   
+        
+       function createPara() {	
+         var para = document.createElement("P")
+       console.log(para)
+         var txt = document.createTextNode("This is a paragraph")
+       console.log(txt)
+         para.appendChild(txt)
+         document.body.appendChild(para)
+       
+       }
+
+       function changeTxt() {
+       var txt = document.getElementsByTagName("p")[0];
+           txt.innerHTML = "This is no longer a paragragh"
+       
+       }
+
+       function deleteTxt() {
+       var txt = document.getElementsByTagName("p")[0]
+       txt.remove()
+       }
+
+
+ 
+</script>
+
+<!--DOM
+In JS, create a function that creates a paragraph tag.
+Another function that changes the text of that paragraph tag to what is in a textbox
+Another function that deletes the paragraph tag
+All of these functions should be called with a button(s).-->

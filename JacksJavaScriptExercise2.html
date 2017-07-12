@@ -3,13 +3,17 @@
      <title> Coding Challenege 2 </title>
        <script>   
        
-        function squareNum(p1) {p1*p1;
-        document.write(squareNum(3),"\n")
-        }   
-
-        function numAdd(p1,p2,p3) {p1 + p2 + p3;
-        document.write(numAdd(1,2,3),"\n")
+        function squareNum(p1) {
+            var tmp = p1*p1;
+        document.write(tmp,"\n")
         }
+        squareNum(3)  
+        
+        function numAdd(p1,p2,p3) {
+            var tmp = p1 + p2 + p3;
+        document.write(tmp,"\n")
+        }
+        numAdd(1,2,3)
         
         var personObj = {
             name: "Jack",
@@ -18,12 +22,16 @@
         }
         document.write(JSON.stringify(personObj,null,2),"\n")   
         personObj.name = "Dave"
-        document.write(JSON.stringify(personObj,null,2),"\n")   /*JSON means Java script object notation, the null is saying don't perfomr a fucntion on the data,
+        document.write(JSON.stringify(personObj,null,2),"\n")  
+        /*JSON means Java script object notation, the null is saying don't perfomr a fucntion on the data,
                                                                  and the 2 specifies the amount of white space charectors too insert*/
       
         function newAge(personObj) {personObj.age += 1;
         window.alert(JSON.stringify(personObj,null,2),) 
         }
+       
+       
+      
        
 
         </script>
@@ -32,7 +40,7 @@
      <body> 
 		<form> 
             
-        <input type="button" onclick="alert(squareNum(3))" value="squareThis" /> 
+        <input type="button" onclick="squareNum(3)" value="squareThis" /> 
         <input type="button" onclick="newAge(personObj)" value="ageThis" /> 
 		
         </form> 

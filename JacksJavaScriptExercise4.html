@@ -1,0 +1,43 @@
+<html> 
+   <head> 
+     <title> Coding Challenege 4 </title>
+       <script>   
+          
+        var personObj = {
+            name: "Jack",
+            age: 39,
+            occupation: "Dodgy Dev"
+        }
+              
+        function newAge(personObj) {personObj.age += 1;
+        window.alert(JSON.stringify(personObj,null,2),) 
+        
+        if (personObj.age <= 20 || personObj.age >= 40) {
+           document.write("this person is either too old or too young you")
+       }
+       else {
+           document.write("like goldilocks, this person is juuuuust right ;)")
+       }
+       
+        }
+       
+       if (personObj.age <= 20 || personObj.age >= 40) {
+           document.write("this person is either too old or too young you")
+       }
+       else {
+           document.write("like goldilocks, this person is juuuuust right ;)")
+       }
+   
+
+
+        </script>
+     </head>
+
+     <body> 
+		<form> 
+            
+        <input type="button" onclick="newAge(personObj)" value="ageThis" /> 
+		
+        </form> 
+	</body> 
+</html>
