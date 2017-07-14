@@ -1,0 +1,57 @@
+<html> 
+   <head> 
+     <title> Coding Challenege Twelve Pokemon </title>
+       <script>   
+       	
+     function pokemon(attacker, defender) {
+         var defPok = defender.split(" ");
+         var atPok = attacker.split(" ");
+         var totalPokemonDamage = 0;
+         console.log(defPok)
+
+
+         atPok.forEach(function(atPok){
+         console.log("entered for each atk")
+         var requestURL = 'http://pokeapi.co/api/v2/type/' + atPok; // the atPok is actually being added to the end 
+         var request = new XMLHttpRequest();                        // of the URL which loads the api specific to that type of pokemon
+         request.open('GET', requestURL);
+         request.responseType = 'json' 
+         request.send(); 
+         request.onload = function() { 
+         
+         var urlResponse = request.response;
+         console.log(urlResponse)
+
+
+         var totalPokemonDamage = 0;
+
+
+
+           defPok.forEach((defPok)=>{                    
+               console.log("entered for each def")       
+               totalPokemonDamage += urlResponse.damage_relations.half_damage_to.filter((obj)=>defPok==obj.name).length * 0.5
+               totalPokemonDamage += urlResponse.damage_relations.double_damage_to.filter((obj)=>defPok==obj.name).length * 2
+             }                                            
+           )                                                            
+          console.log("Damage multiplier:- " + totalPokemonDamage)
+          }
+                                              //function goes through the damage relation api untill it finds a match for the defence type
+       }                                      //if it doesn't find one for 0.5 it will then move onto 2 (this is due to the forEach)
+      )                                       //.length is specifying how many elements in the array (2 pokemon for example)
+    }                                         // this total is then passed to the multiplier and outputted to console
+
+ 
+          </script>
+       </head>
+       <body>
+    
+        <form> 
+
+           <input type="text" name="attacker" placeholder="Attacker">
+           <input type="text" name="defender" placeholder="Defender">
+           <input type="button" onclick="pokemon(attacker.value, defender.value)" value="Run" />
+
+        </form>​
+
+     </body>  
+</html> 
